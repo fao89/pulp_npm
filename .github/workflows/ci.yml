@@ -58,6 +58,8 @@ jobs:
           .github/before_install.sh
           echo "::set-env name=TEST::${{ matrix.env.TEST }}"
         shell: bash
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v2
       - name: Install
         run: |
           .github/install.sh
