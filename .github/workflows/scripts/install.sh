@@ -95,6 +95,13 @@ fi
 ansible-playbook build_container.yaml
 ansible-playbook start_container.yaml
 
+sudo docker cp pulp:/etc/pulp/certs/ca.crt /usr/share/ca-certificates/pulp_ca.crt
+sudo docker cp pulp:/etc/pulp/certs/pulp_webserver.crt /usr/share/ca-certificates/pulp_webserver.crt
+sudo ls -al /usr/local/share/ca-certificates
+sudo update-ca-certificates
+echo "+pulp_ca.crt" > /etc/ca-certificates/update.d/activate_pulp_cert
+sudo dpkg-reconfigure ca-certificates
+
 echo ::group::PIP_LIST
 cmd_prefix bash -c "pip3 list && pip3 install pipdeptree && pipdeptree"
 echo ::endgroup::

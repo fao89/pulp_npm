@@ -81,6 +81,8 @@ fi
 cd pulp-openapi-generator
 sed -i -e 's/localhost:24817/pulp/g' generate.sh
 sed -i -e 's/:24817/pulp/g' generate.sh
+sed -i -e 's/http:/https:/g' generate.sh
+sed -i -e 's/curl/curl --insecure/g' generate.sh
 cd ..
 
 
